@@ -16,33 +16,33 @@ I created this script because Excel Power Query struggles when working with 1,00
 
 ❌ Failed files (unreadable or broken files).
 
-**🚀 Features**
+🚀 Features
 
-- Large-scale dataset combining
+Large-scale dataset combining
 
-- Works with both .xlsx and .csv files.
+Works with both .xlsx and .csv files.
 
-- Handles more than 10 million rows by splitting the final dataset into multiple Excel files, each with 500,000 rows.
+Handles more than 10 million rows by splitting the final dataset into multiple Excel files, each with 500,000 rows.
 
-- Column normalization
+Column normalization
 
-- Standardizes column headers to match a predefined schema.
+Standardizes column headers to match a predefined schema.
 
-- If headers differ but column count matches, it renames by position.
+If headers differ but column count matches, it renames by position.
 
-- Otherwise, the file is flagged as mismatched.
+Otherwise, the file is flagged as mismatched.
 
-- Source tracking
+Source tracking
 
-- Every record includes two extra fields:
+Every record includes two extra fields:
 
-  - source_directory → The folder path of the file.
+source_directory → The folder path of the file.
 
-  - source_filename → The file name.
+source_filename → The file name.
 
 This lets you trace back where each record originated.
 
-**Error handling & reporting**
+Error handling & reporting
 
 Mismatched Files Report → Excel file listing files that don’t match the expected schema (with missing/extra columns).
 
@@ -54,23 +54,23 @@ Files are processed in sorted order to ensure repeatable results.
 
 Empty rows are skipped automatically.
 
-**📊 Workflow**
+📊 Workflow
 
-- Collect all files under the input folder (Excel & CSV).
+Collect all files under the input folder (Excel & CSV).
 
-- Normalize column headers → align with the standard schema.
+Normalize column headers → align with the standard schema.
 
-- Combine data from all valid files.
+Combine data from all valid files.
 
-- Split into multiple Excel files if row count > 500,000.
+Split into multiple Excel files if row count > 500,000.
 
-- Generate reports:
+Generate reports:
 
-  - mismatched_files_report.xlsx
+mismatched_files_report.xlsx
 
-  - failed_files.xlsx
+failed_files.xlsx
 
-**📁 Output Files**
+📁 Output Files
 
 all_combined_data.xlsx (if ≤ 500,000 rows)
 
@@ -84,10 +84,12 @@ failed_files.xlsx
 
 At the top of the script, update these paths:
 
-- Input folder containing all datasets
+Input folder containing all datasets
+
 folder_path = r"D:\...\data\cleaningData\...\ရန်ကုန်"
 
-- Output folder for combined data and reports
+Output folder for combined data and reports
+
 output_dir = r"D:\...\data\sampleCombinedData\ygn_combined_data"
 
 📋 Example Use Case
@@ -96,46 +98,38 @@ Imagine you have 12,000 Excel files with payroll contributions, each with slight
 
 With this script, you can:
 
-- Merge all files into one dataset.
+Merge all files into one dataset.
 
-- Know exactly which file and folder each record came from.
+Know exactly which file and folder each record came from.
 
-- Split into manageable chunks for further analysis in Power BI, SQL, or Excel.
+Split into manageable chunks for further analysis in Power BI, SQL, or Excel.
 
-- Review logs to see which files failed or had schema mismatches.
+Review logs to see which files failed or had schema mismatches.
 
 🔍 Process Summary Example
-
 --- 📊 Process Summary ---
-
 ✅ Successfully combined files: 9,820
-
 ⚠️ Files with mismatched columns: 185
-
 ❌ Failed to read files: 12
-
 📁 Combined data saved to: D:\...\all_combined_data_1.xlsx, all_combined_data_2.xlsx, ...
-
 ⚠️ Mismatched report saved to: D:\...\mismatched_files_report.xlsx
-
 ❌ Failure report saved to: D:\...\failed_files.xlsx
-
 --- Process Complete ---
 
-**🛠️ Requirements**
+🛠️ Requirements
 
-- Python 3.8+
+Python 3.8+
 
-- Libraries:
+Libraries:
 
-  - pip install pandas openpyxl
+pip install pandas openpyxl
 
 🌟 Why This Project?
 
-- Excel Power Query Limitations → Slow or crashes when dealing with >10,000 datasets.
+Excel Power Query Limitations → Slow or crashes when dealing with >10,000 datasets.
 
-- Data Source Transparency → Knowing the exact source file is critical for auditing.
+Data Source Transparency → Knowing the exact source file is critical for auditing.
 
-- Scalability → Handles millions of rows gracefully with splitting logic.
+Scalability → Handles millions of rows gracefully with splitting logic.
 
-- Reliability → Provides reports to catch schema issues or failed files.
+Reliability → Provides reports to catch schema issues or failed files.

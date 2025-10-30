@@ -106,6 +106,7 @@ With this script, you can:
 
 🔍 Process Summary Example
 --- 📊 Process Summary ---
+
 ✅ Successfully combined files: 9,820
 ⚠️ Files with mismatched columns: 185
 ❌ Failed to read files: 12

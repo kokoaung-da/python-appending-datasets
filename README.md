@@ -4,20 +4,20 @@ This project provides a Python-based solution for combining a large number of Ex
 
 I created this script because Excel Power Query struggles when working with 1,000+ files or datasets exceeding millions of rows. With this tool, you can:
 
-- Combine thousands of Excel/CSV files efficiently.
+✅ Combine thousands of Excel/CSV files efficiently.
 
-- Automatically capture file directory name and file name for each record (to trace data sources).
+✅ Automatically capture file directory name and file name for each record (to trace data sources).
 
-- Handle datasets larger than 10 million rows by splitting into multiple output files (500,000 rows each).
+✅ Handle datasets larger than 10 million rows by splitting into multiple output files (500,000 rows each).
 
-- Detect and log:
+✅ Detect and log:
 
 ⚠️ Mismatched files (wrong/missing columns).
 
 ❌ Failed files (unreadable or broken files).
 
- **Features**
- 
+🚀 Features
+
 Large-scale dataset combining
 
 Works with both .xlsx and .csv files.

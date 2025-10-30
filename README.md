@@ -1,135 +1,81 @@
 # 📂 Data Combining Tool
 
-This project provides a Python-based solution for combining a large number of Excel and CSV datasets into a single, consistent dataset.
+A Python-based solution for **combining a large number of Excel and CSV datasets** into one consistent dataset.
 
-I created this script because Excel Power Query struggles when working with 1,000+ files or datasets exceeding millions of rows. With this tool, you can:
+I built this because **Excel Power Query** often struggles or crashes when dealing with **1,000+ files** or datasets containing **millions of rows**.  
+This tool handles that scale with ease — while keeping track of where every record came from.
 
-✅ Combine thousands of Excel/CSV files efficiently.
+---
 
-✅ Automatically capture file directory name and file name for each record (to trace data sources).
+## 🚀 What This Tool Does
 
-✅ Handle datasets larger than 10 million rows by splitting into multiple output files (500,000 rows each).
+- ✅ Combine **thousands of Excel and CSV files** efficiently  
+- ✅ Automatically add:
+  - `source_directory` → folder path of each file  
+  - `source_filename` → file name of each record  
+- ✅ Handle **datasets larger than 10 million rows** by splitting into multiple Excel files (each up to 500,000 rows)  
+- ✅ Detect and log:
+  - ⚠️ **Mismatched files** (wrong or missing columns)  
+  - ❌ **Failed files** (unreadable or corrupted files)
 
-✅ Detect and log:
+---
 
-⚠️ Mismatched files (wrong/missing columns).
+## 🔧 Key Features
 
-❌ Failed files (unreadable or broken files).
+### 🧩 Large-Scale Combining
+- Works with both **.xlsx** and **.csv** files  
+- Handles **millions of rows** using automatic file splitting  
+- Processes files in **sorted order** for consistent and repeatable results  
 
-🚀 Features
+### 📑 Column Normalization
+- Standardizes column headers to match a **predefined schema**  
+- If headers differ but column count matches, columns are **renamed by position**  
+- Files with missing or extra columns are **flagged as mismatched**
 
-Large-scale dataset combining
+### 🗂️ Source Tracking
+- Adds two columns to every record:
+  - `source_directory`
+  - `source_filename`  
+- Makes it easy to trace back where each row originated  
 
-Works with both .xlsx and .csv files.
+### ⚠️ Error Handling & Reporting
+- Generates clear reports:
+  - `mismatched_files_report.xlsx` → files with missing or extra columns  
+  - `failed_files.xlsx` → files that couldn’t be read (with error reason)  
+- Skips empty rows automatically  
 
-Handles more than 10 million rows by splitting the final dataset into multiple Excel files, each with 500,000 rows.
+---
 
-Column normalization
+## 📊 Workflow
 
-Standardizes column headers to match a predefined schema.
+1. Collect all `.xlsx` and `.csv` files under the input folder  
+2. Normalize column headers to match the standard schema  
+3. Combine valid files into one dataset  
+4. Split into multiple Excel files if total rows exceed 500,000  
+5. Generate reports:
+   - `mismatched_files_report.xlsx`
+   - `failed_files.xlsx`
 
-If headers differ but column count matches, it renames by position.
+---
 
-Otherwise, the file is flagged as mismatched.
+## 📁 Output Files
 
-Source tracking
+| File | Description |
+|------|--------------|
+| `all_combined_data.xlsx` | Output file (if ≤ 500,000 rows) |
+| `all_combined_data_1.xlsx`, `all_combined_data_2.xlsx`, ... | Split output files (if > 500,000 rows) |
+| `mismatched_files_report.xlsx` | Lists files with missing or extra columns |
+| `failed_files.xlsx` | Lists unreadable or broken files |
 
-Every record includes two extra fields:
+---
 
-source_directory → The folder path of the file.
+## ⚙️ Configuration
 
-source_filename → The file name.
+Edit the paths at the top of the script:
 
-This lets you trace back where each record originated.
+```python
+# Input folder containing all datasets
+folder_path = r"D:\data\cleaningData\ရန်ကုန်"
 
-Error handling & reporting
-
-Mismatched Files Report → Excel file listing files that don’t match the expected schema (with missing/extra columns).
-
-Failed Files Report → Excel file listing files that couldn’t be read (with error reason).
-
-Consistent processing
-
-Files are processed in sorted order to ensure repeatable results.
-
-Empty rows are skipped automatically.
-
-📊 Workflow
-
-Collect all files under the input folder (Excel & CSV).
-
-Normalize column headers → align with the standard schema.
-
-Combine data from all valid files.
-
-Split into multiple Excel files if row count > 500,000.
-
-Generate reports:
-
-mismatched_files_report.xlsx
-
-failed_files.xlsx
-
-📁 Output Files
-
-all_combined_data.xlsx (if ≤ 500,000 rows)
-
-all_combined_data_1.xlsx, all_combined_data_2.xlsx, ... (if > 500,000 rows)
-
-mismatched_files_report.xlsx
-
-failed_files.xlsx
-
-⚙️ Configuration
-
-At the top of the script, update these paths:
-
-Input folder containing all datasets
-
-folder_path = r"D:\...\data\cleaningData\...\ရန်ကုန်"
-
-Output folder for combined data and reports
-
-output_dir = r"D:\...\data\sampleCombinedData\ygn_combined_data"
-
-📋 Example Use Case
-
-Imagine you have 12,000 Excel files with payroll contributions, each with slightly different formatting.
-
-With this script, you can:
-
-Merge all files into one dataset.
-
-Know exactly which file and folder each record came from.
-
-Split into manageable chunks for further analysis in Power BI, SQL, or Excel.
-
-Review logs to see which files failed or had schema mismatches.
-
-🔍 Process Summary Example
---- 📊 Process Summary ---
-✅ Successfully combined files: 9,820
-⚠️ Files with mismatched columns: 185
-❌ Failed to read files: 12
-📁 Combined data saved to: D:\...\all_combined_data_1.xlsx, all_combined_data_2.xlsx, ...
-⚠️ Mismatched report saved to: D:\...\mismatched_files_report.xlsx
-❌ Failure report saved to: D:\...\failed_files.xlsx
---- Process Complete ---
-
-🛠️ Requirements
-
-Python 3.8+
-
-Libraries:
-
-pip install pandas openpyxl
-
-🌟 Why This Project?
-
-Excel Power Query Limitations → Slow or crashes when dealing with >10,000 datasets.
-
-Data Source Transparency → Knowing the exact source file is critical for auditing.
-
-Scalability → Handles millions of rows gracefully with splitting logic.
-
-Reliability → Provides reports to catch schema issues or failed files.
+# Output folder for combined data and reports
+output_dir = r"D:\data\sampleCombinedData\ygn_combined_data"

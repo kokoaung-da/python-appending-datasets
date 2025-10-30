@@ -1,0 +1,133 @@
+📂 Data Combining Tool
+
+This project provides a Python-based solution for combining a large number of Excel and CSV datasets into a single, consistent dataset.
+
+I created this script because Excel Power Query struggles when working with 10,000+ files or datasets exceeding millions of rows. With this tool, you can:
+
+✅ Combine thousands of Excel/CSV files efficiently.
+
+✅ Automatically capture file directory name and file name for each record (to trace data sources).
+
+✅ Handle datasets larger than 10 million rows by splitting into multiple output files (500,000 rows each).
+
+✅ Detect and log:
+
+⚠️ Mismatched files (wrong/missing columns).
+
+❌ Failed files (unreadable or broken files).
+
+🚀 Features
+
+Large-scale dataset combining
+
+Works with both .xlsx and .csv files.
+
+Handles more than 10 million rows by splitting the final dataset into multiple Excel files, each with 500,000 rows.
+
+Column normalization
+
+Standardizes column headers to match a predefined schema.
+
+If headers differ but column count matches, it renames by position.
+
+Otherwise, the file is flagged as mismatched.
+
+Source tracking
+
+Every record includes two extra fields:
+
+source_directory → The folder path of the file.
+
+source_filename → The file name.
+
+This lets you trace back where each record originated.
+
+Error handling & reporting
+
+Mismatched Files Report → Excel file listing files that don’t match the expected schema (with missing/extra columns).
+
+Failed Files Report → Excel file listing files that couldn’t be read (with error reason).
+
+Consistent processing
+
+Files are processed in sorted order to ensure repeatable results.
+
+Empty rows are skipped automatically.
+
+📊 Workflow
+
+Collect all files under the input folder (Excel & CSV).
+
+Normalize column headers → align with the standard schema.
+
+Combine data from all valid files.
+
+Split into multiple Excel files if row count > 500,000.
+
+Generate reports:
+
+mismatched_files_report.xlsx
+
+failed_files.xlsx
+
+📁 Output Files
+
+all_combined_data.xlsx (if ≤ 500,000 rows)
+
+all_combined_data_1.xlsx, all_combined_data_2.xlsx, ... (if > 500,000 rows)
+
+mismatched_files_report.xlsx
+
+failed_files.xlsx
+
+⚙️ Configuration
+
+At the top of the script, update these paths:
+
+# Input folder containing all datasets
+folder_path = r"D:\...\data\cleaningData\...\ရန်ကုန်"
+
+# Output folder for combined data and reports
+output_dir = r"D:\...\data\sampleCombinedData\ygn_combined_data"
+
+📋 Example Use Case
+
+Imagine you have 12,000 Excel files with payroll contributions, each with slightly different formatting.
+
+With this script, you can:
+
+Merge all files into one dataset.
+
+Know exactly which file and folder each record came from.
+
+Split into manageable chunks for further analysis in Power BI, SQL, or Excel.
+
+Review logs to see which files failed or had schema mismatches.
+
+🔍 Process Summary Example
+--- 📊 Process Summary ---
+✅ Successfully combined files: 9,820
+⚠️ Files with mismatched columns: 185
+❌ Failed to read files: 12
+📁 Combined data saved to: D:\...\all_combined_data_1.xlsx, all_combined_data_2.xlsx, ...
+⚠️ Mismatched report saved to: D:\...\mismatched_files_report.xlsx
+❌ Failure report saved to: D:\...\failed_files.xlsx
+--- Process Complete ---
+
+🛠️ Requirements
+
+Python 3.8+
+
+Libraries:
+
+pip install pandas openpyxl
+
+🌟 Why This Project?
+
+Excel Power Query Limitations → Slow or crashes when dealing with >10,000 datasets.
+
+Data Source Transparency → Knowing the exact source file is critical for auditing.
+
+Scalability → Handles millions of rows gracefully with splitting logic.
+
+Reliability → Provides reports to catch schema issues or failed files.

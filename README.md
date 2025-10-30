@@ -105,6 +105,7 @@ With this script, you can:
 - Review logs to see which files failed or had schema mismatches.
 
 🔍 Process Summary Example
+
 --- 📊 Process Summary ---
 
 ✅ Successfully combined files: 9,820

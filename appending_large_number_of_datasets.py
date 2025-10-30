@@ -16,9 +16,7 @@ os.makedirs(output_dir, exist_ok=True)
 
 # Standard reference column names (normalized)
 standard_columns = [
-    "year", "month", "erssn", "ername", "eessn", "eename", "minc",
-    "ss1eerate", "ss1errate", "ss1eeconamt", "ss1erconamt",
-    "ss2eerate", "ss2errate", "ss2eeconamt", "ss2erconamt", "totalconamt"
+    "year", "month", "employeeid", "employeename", .........
 ]
 STANDARD_COLUMN_COUNT = len(standard_columns)
 

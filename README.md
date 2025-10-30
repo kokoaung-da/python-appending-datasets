@@ -108,14 +108,20 @@ With this script, you can:
 --- 📊 Process Summary ---
 
 ✅ Successfully combined files: 9,820
+
 ⚠️ Files with mismatched columns: 185
+
 ❌ Failed to read files: 12
+
 📁 Combined data saved to: D:\...\all_combined_data_1.xlsx, all_combined_data_2.xlsx, ...
+
 ⚠️ Mismatched report saved to: D:\...\mismatched_files_report.xlsx
+
 ❌ Failure report saved to: D:\...\failed_files.xlsx
+
 --- Process Complete ---
 
-🛠️ Requirements
+**🛠️ Requirements**
 
 - Python 3.8+
 
